@@ -1,0 +1,9 @@
+language: ruby
+ruby:
+  - "1.9"
+  - "2.0"
+install:
+  - gem install zmq
+  - gem install json
+script:
+  - nosetests
