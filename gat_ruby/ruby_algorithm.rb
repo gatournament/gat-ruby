@@ -34,7 +34,8 @@ class GameAlgorithm
   end
 
   def read_incoming_message
-    message = @client.recvfrom(8192)[0].chomp
+    message = @client.recvfrom(8192)[0]
+    message.chomp! if message
     if not message or message == 'stop'
       stop
     else
