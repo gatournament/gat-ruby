@@ -5,5 +5,5 @@ ruby:
 install:
   - gem install zmq
   - gem install json
-script:
-  - nosetests
+# script:
+#   - nosetests

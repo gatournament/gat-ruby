@@ -1,14 +1,14 @@
 
 class TrucoAlgorithm < GameAlgorithm
   def process_message(message)
-    if message[:action] == :play:
+    if message[:action] == "play"
       play(message[:context])
-    elsif message[:action] == :accept_truco:
+    elsif message[:action] == "accept_truco"
       accept = accept_truco(message[:context])
       if accept
-        send_response({:action: :accept_truco})
+        send_response({:action => :accept_truco})
       else
-        send_response({:action: :giveup_truco})
+        send_response({:action => :giveup_truco})
       end
     end
   end

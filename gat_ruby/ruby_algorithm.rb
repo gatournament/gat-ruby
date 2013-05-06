@@ -1,20 +1,19 @@
-require "zmq"
+require "socket"
 require "json"
 
 # algorithm = GameAlgorithm.new
 # algorithm.listen
 class GameAlgorithm
-  def initialize(name, artist, duration)
-    context = ZMQ::Context.new(1)
-    @sock = context.socket(ZMQ::REP)
-  end
-
   def listen(host='localhost', port=nil)
-    if not port:
-        port = sys.argv[1] if len(sys.argv) > 1 else 88888
+    unless port
+      port = ARGV[0].to_i if ARGV.count > 0
     end
-    @sock.bind("ipc://#{host}:#{port}")
-    puts "Listening"
+    puts "Random port: #{port}"
+    @server = TCPServer.open(port)
+    puts "Listening on port #{port}"
+    @client = @server.accept
+    puts "Client connected"
+
     @stopped = false
     while not @stopped
       begin
@@ -24,7 +23,10 @@ class GameAlgorithm
         send_error(e)
         stop
         raise e
+      end
     end
+    @client.close
+    @server.close
   end
 
   def stop
@@ -32,16 +34,17 @@ class GameAlgorithm
   end
 
   def read_incoming_message
-    message = @sock.recv
-    # message = loads(message)
-    if message == 'stop'
+    message = @client.recvfrom(8192)[0].chomp
+    if not message or message == 'stop'
       stop
+    else
+      message = JSON.parse(message, :symbolize_names => true)
+      process_message(message)
     end
-    process_message(message)
   end
 
   def process_message(message)
-    if message['action'] == 'play':
+    if message[:action] == "play"
       play(message['context'])
     end
   end
@@ -50,8 +53,8 @@ class GameAlgorithm
   end
 
   def send_response(message)
-    # message = dumps(message)
-    @sock.send(message)
+    message = JSON.dump(message)
+    @client.puts message
   end
 
   def send_error(error_message)
