@@ -1,6 +1,5 @@
-require "./ruby_algorithm"
 
-class TrucoAlgorithm < GameAlgorithm
+class TrucoAlgorithm < RubyAlgorithm
   def process_message(message)
     if message[:action] == "play"
       play(message[:context])

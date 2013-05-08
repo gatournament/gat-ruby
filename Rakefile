@@ -1,3 +1,4 @@
+GEM_NAME = "gat_ruby"
 VERSION = "0.0.1"
 
 def colorize(text, color)
@@ -40,13 +41,20 @@ task :reset_tag => [] do
   sh "git push origin :refs/tags/#{VERSION}"
 end
 
+task :tests => [] do
+end
+
 task :package => [:tests] do
-  sh "gem build gat_ruby.gemspec"
+  sh "gem build #{GEM_NAME}.gemfile"
+end
+
+task :install => [:package] do
+  sh "gem install #{GEM_NAME}-#{VERSION}.gem"
 end
 
 task :publish => [:tests, :package, :tag] do
   sh "curl -u qrush https://rubygems.org/api/v1/api_key.yaml > ~/.gem/credentials"
-  sh "gem push gat_ruby-#{VERSION}.gem"
+  sh "gem push #{GEM_NAME}-#{VERSION}.gem"
 end
 
 task :all => [:dev_env, :dependencies, :tests]

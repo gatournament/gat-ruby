@@ -1,9 +1,9 @@
 require "socket"
 require "json"
 
-# algorithm = GameAlgorithm.new
+# algorithm = RubyAlgorithm.new
 # algorithm.listen
-class GameAlgorithm
+class RubyAlgorithm
   def listen(host='localhost', port=nil)
     unless port
       port = ARGV[0].to_i if ARGV.count > 0

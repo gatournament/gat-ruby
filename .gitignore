@@ -17,3 +17,4 @@ lib64
 
 # Translations
 *.mo
+*.gem
