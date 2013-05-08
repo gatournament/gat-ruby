@@ -1,0 +1,11 @@
+Gem::Specification.new do |s|
+  s.name        = 'gat_ruby'
+  s.version     = '0.0.1'
+  s.date        = '2013-05-10'
+  s.summary     = "GAT Ruby SDK"
+  s.description = "Game Algorithms Tournament Ruby SDK"
+  s.authors     = ["GATournament.com"]
+  s.email       = 'contact@gatournament.com'
+  s.files       = ["lib/gat_ruby.rb"]
+  s.homepage    = 'http://rubygems.org/gems/gat_ruby'
+end

@@ -1,0 +1,1 @@
+require "./truco_algorithm"

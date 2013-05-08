@@ -1,3 +1,4 @@
+require "./ruby_algorithm"
 
 class TrucoAlgorithm < GameAlgorithm
   def process_message(message)
