@@ -50,7 +50,7 @@ task :install => [:package] do
 end
 
 task :publish => [:package, :tag] do
-  sh "curl -u qrush https://rubygems.org/api/v1/api_key.yaml > ~/.gem/credentials"
+  # sh "curl -u gat https://rubygems.org/api/v1/api_key.yaml > ~/.gem/credentials"
   sh "gem push #{GEM_NAME}-#{VERSION}.gem"
 end
 

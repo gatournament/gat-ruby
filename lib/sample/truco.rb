@@ -23,4 +23,4 @@ end
 
 # Required:
 algorithm = YourAlgorithm.new
-algorithm.listen
+algorithm.listen()
