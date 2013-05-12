@@ -20,17 +20,6 @@ def colorize(text, color)
   end
 end
 
-task :clean => [] do
-  sh "rm -rf ~*"
-end
-
-require 'rake/testtask'
-Rake::TestTask.new do |t|
-  t.libs << 'test'
-end
-# task :tests => [] do
-# end
-
 task :tag => [:tests] do
   sh "git tag #{VERSION}"
   sh "git push origin #{VERSION}"
@@ -41,6 +30,14 @@ task :reset_tag => [] do
   sh "git push origin :refs/tags/#{VERSION}"
 end
 
+task :clean => [] do
+  sh "rm -rf ~*"
+end
+
+require 'rake/testtask'
+Rake::TestTask.new do |t|
+  t.libs << 'test'
+end
 task :tests => [] do
 end
 
@@ -52,11 +49,9 @@ task :install => [:package] do
   sh "gem install #{GEM_NAME}-#{VERSION}.gem"
 end
 
-task :publish => [:tests, :package, :tag] do
+task :publish => [:package, :tag] do
   sh "curl -u qrush https://rubygems.org/api/v1/api_key.yaml > ~/.gem/credentials"
   sh "gem push #{GEM_NAME}-#{VERSION}.gem"
 end
-
-task :all => [:dev_env, :dependencies, :tests]
 
 task :default => [:tests]
