@@ -31,15 +31,15 @@ Installation
 ------------
 
 ```
-gem install gat-ruby
+gem install gat_ruby
 ```
 
 #### Development version
 
 ```
-git+git@github.com:paulocheque/gat-ruby.git#egg=gat-ruby
+git+git@github.com:paulocheque/gat-ruby.git#egg=gat_ruby
 or
-git+https://github.com/paulocheque/gat-ruby.git#egg=gat-ruby
+git+https://github.com/paulocheque/gat-ruby.git#egg=gat_ruby
 ```
 
 #### Upgrade:
