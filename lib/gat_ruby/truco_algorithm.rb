@@ -20,7 +20,7 @@ class TrucoAlgorithm < RubyAlgorithm
   end
 
   def can_truco(context)
-    return context[:round_value].to_i > 12
+    return context[:round_can_truco] == 'true'
   end
 
   def upcard(card)
