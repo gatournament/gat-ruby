@@ -34,7 +34,7 @@ class RubyAlgorithm
   end
 
   def read_incoming_message
-    message = @client.recvfrom(8192)[0]
+    message = @client.gets
     message.chomp! if message
     if not message or message == 'stop'
       stop
@@ -55,6 +55,7 @@ class RubyAlgorithm
 
   def send_response(message)
     message = JSON.dump(message)
+    message = "#{message}\n"
     @client.puts message
   end
 
