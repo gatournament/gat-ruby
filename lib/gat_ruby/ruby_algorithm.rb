@@ -4,6 +4,10 @@ require "json"
 # algorithm = GameAlgorithm.new
 # algorithm.listen
 class GameAlgorithm
+  def log(message)
+    puts "[GATRuby] #{message}"
+  end
+
   def listen(host='localhost', port=nil)
     unless port
       port = ARGV[0].to_i if ARGV.count > 0
