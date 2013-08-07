@@ -1,5 +1,5 @@
 
-class TrucoAlgorithm < RubyAlgorithm
+class TrucoAlgorithm < GameAlgorithm
   def process_message(message)
     if message[:action] == "play"
       play(message[:context])
