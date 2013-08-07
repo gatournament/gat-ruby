@@ -3,7 +3,9 @@ require "gat_ruby"
 class YourAlgorithm < TrucoAlgorithm
   # You must decide which card of your hand you want to upcard in the table.
   def play(context)
-    puts context # to see all information you have to take your decision
+    # to see all information you have to take your decision
+    # puts context
+
     randomDecisionToTruco = Random.rand(1..10)
     if self.can_truco(context) and randomDecisionToTruco > 5
       return self.truco() # only call this method if self.can_truco(context) returns True
