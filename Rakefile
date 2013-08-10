@@ -1,5 +1,5 @@
 GEM_NAME = "gat_ruby"
-VERSION = "0.0.2"
+VERSION = "0.0.3"
 
 def colorize(text, color)
   color_codes = {
