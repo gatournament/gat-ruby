@@ -54,15 +54,20 @@ class GameAlgorithm
         log e, Logger::ERROR
         send_error(e)
         stop
+        close
         raise e
       end
     end
-    @client.close
-    @server.close
+    close
   end
 
   def stop
     @stopped = true
+  end
+
+  def close
+    @client.close if @client
+    @server.close if @server
   end
 
   def read_incoming_message
