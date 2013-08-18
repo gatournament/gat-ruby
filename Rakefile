@@ -51,6 +51,7 @@ end
 
 task :publish => [:package, :tag] do
   # sh "curl -u gat https://rubygems.org/api/v1/api_key.yaml > ~/.gem/credentials"
+  # gem yank gat_ruby -v #{VERSION}
   sh "gem push #{GEM_NAME}-#{VERSION}.gem"
 end
 
